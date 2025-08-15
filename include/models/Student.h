@@ -9,6 +9,13 @@
 
 namespace model {
     class Student : public User {
+    private:
+        string file;
+
+        void makeFile() {
+            file = file + "_" + getId() + ".dat";
+        }
+
     public:
         Student();
 

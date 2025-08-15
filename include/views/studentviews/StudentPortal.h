@@ -4,7 +4,7 @@
 
 #ifndef STUDENTPORTAL_H
 #define STUDENTPORTAL_H
-#include "../models/Student.h"
+#include "../../models/Student.h"
 
 
 namespace view {
@@ -12,6 +12,11 @@ namespace view {
 
     class StudentPortal {
     public:
+
+        static  void options();
+
+        static void MainView();
+
 
     };
 }

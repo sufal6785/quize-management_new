@@ -14,8 +14,14 @@ add_executable(quiz-management-new
         include/models/User.h
         include/models/Student.cpp
         include/models/Student.h
-        include/views/StudentPortal.cpp
-        include/views/StudentPortal.h
+        include/views/studentviews/StudentPortal.cpp
+        include/views/studentviews/StudentPortal.h
+        include/views/MainView.cpp
+        include/views/MainView.h
+        include/views/studentviews/welcome.h
+        include/views/studentviews/LoginRegister.h
+        include/models/Utility.cpp
+        include/models/Utility.h
 )
 
 # If you have header files in an include directory
