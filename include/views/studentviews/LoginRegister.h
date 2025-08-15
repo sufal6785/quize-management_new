@@ -77,6 +77,7 @@ namespace view {
                 login_or_register();
             } else {
                 cout << "Oops!!! Username already exist...!!!\n";
+                login_or_register();
             }
         }
 
