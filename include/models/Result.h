@@ -6,11 +6,12 @@
 #define RESULT_H
 
 
+namespace model
+{
+    class Result {
 
-class Result {
-
-};
-
+    };
+}
 
 
 #endif //RESULT_H

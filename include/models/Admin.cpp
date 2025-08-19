@@ -3,3 +3,7 @@
 //
 
 #include "Admin.h"
+
+namespace model
+{
+}
