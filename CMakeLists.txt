@@ -22,6 +22,8 @@ add_executable(quiz-management-new
         include/views/studentviews/LoginRegister.h
         include/models/Utility.cpp
         include/models/Utility.h
+        include/models/Admin.cpp
+        include/models/Admin.h
 )
 
 # If you have header files in an include directory

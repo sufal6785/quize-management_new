@@ -52,7 +52,6 @@ namespace view {
             auto student = make_unique<Student>();
             const shared_ptr<User> user = student->loginUser(id, pass);
 
-
             if (user) {
                 cout << "Congratulations." << endl;
                 StudentPortal::MainView();
