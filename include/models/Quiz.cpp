@@ -1,5 +1,9 @@
 //
-// Created by Hp on 8/19/2025.
+// Created by User on 9/3/2025.
 //
 
 #include "Quiz.h"
+
+namespace model {
+} // model
+

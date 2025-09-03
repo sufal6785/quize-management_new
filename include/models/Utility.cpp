@@ -3,6 +3,7 @@
 //
 
 #include "Utility.h"
+#include <fstream>
 #include <limits>
 
 namespace Utility {
@@ -28,7 +29,7 @@ namespace Utility {
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear input buffer
 
-            if (choice >= 1 && choice <= 2) {
+            if (choice >= low && choice <= up) {
                 return choice;
             }
 
@@ -43,5 +44,27 @@ namespace Utility {
         f += id;
         f += ".dat";
         return f;
+    }
+
+    bool isExistInFile(const string &fileName, const string &userid) {
+        ifstream file;
+        file.open(fileName);
+        if (file.is_open()) {
+            string name, id, pass;
+            while (getline(file, name) && getline(file, id) && getline(file, pass)) {
+                if (userid == id) {
+                    return true;
+                }
+            }
+        } else if (!file.is_open()) return false; //file doesn't exist
+        return false;
+    }
+
+    bool saveToFile(const string &fileName, const string &name, const string &id, const string &pass) {
+        if (ofstream file(fileName, ios::app); file.is_open()) {
+            file << name << "\n" << id << "\n" << pass << "\n";
+            return true;
+        }
+        return false;
     }
 }

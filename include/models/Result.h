@@ -1,16 +1,14 @@
 //
-// Created by Hp on 8/19/2025.
+// Created by User on 9/3/2025.
 //
 
-#ifndef RESULT_H
-#define RESULT_H
+#ifndef QUIZ_MANAGEMENT_NEW_RESULT_H
+#define QUIZ_MANAGEMENT_NEW_RESULT_H
 
+namespace model {
+    class Result {
+    };
+} // model
 
+#endif //QUIZ_MANAGEMENT_NEW_RESULT_H
 
-class Result {
-
-};
-
-
-
-#endif //RESULT_H

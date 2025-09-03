@@ -15,9 +15,9 @@ namespace view {
 
         static  void options();
 
-        static void MainView();
+        static void action();
 
-
+        static void student_home();
     };
 }
 

@@ -13,32 +13,9 @@ using namespace view;
 using namespace model;
 
 int main() {
-    // User *user = new Student();
-    // if (const shared_ptr<User> users = user->loginUser("nn", "123")) {
-    //     const shared_ptr<Student> st = dynamic_pointer_cast<Student>(users);
-    //     st->display();
-    // } else cout << "Failed" << endl;
-
-    // StudentPortal::Welcome();
-    // StudentPortal::options();
-
-
-    // Clear screen (works on most systems)
-    // #ifdef _WIN32
-    //     system("cls");
-    // #else
-    //         system("clear");
-    // #endif
-
-    // MainView::Gretting();
-    // MainView::Options();
-    // MainView::select();
-    // StudentPortal::MainView();
-    LoginRegister::guest();         //***
-
-    // User *users = new Student();
-    // const shared_ptr<User> user = users->loginUser("ss", "123");
-    // user->display();
-    // int ch = getValidChoice();
-    // cout<<ch;
+    // StudentPortal::student_home();
+    auto user = make_unique<Student>();
+    // const shared_ptr<User> user = student->loginUser(id, pass);
+    const shared_ptr<User> student =user->loginUser("ss","123");
+    student->display();
 }

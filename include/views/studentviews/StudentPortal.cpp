@@ -3,7 +3,7 @@
 //
 
 #include "StudentPortal.h"
-
+#include "welcome.h"
 #include "LoginRegister.h"
 using namespace Utility;
 
@@ -22,9 +22,9 @@ namespace view {
     }
 
 
-    void StudentPortal::MainView() {
+    void StudentPortal::action() {  //action(shared_ptr<User> student)
         options();
-        int choice = getValidChoice(1,6);
+        int choice = getValidChoice(1, 6);
 
         switch (choice) {
             case 1:
@@ -49,5 +49,10 @@ namespace view {
                 cout << "Unexpected error occurred. Please try again.\n";
                 break;
         }
+    }
+
+    void StudentPortal::student_home() {
+        Welcome::welcome();
+        LoginRegister::login_or_register();
     }
 }
