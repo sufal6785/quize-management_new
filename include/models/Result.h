@@ -11,3 +11,4 @@ namespace model {
 } // model
 
 #endif //QUIZ_MANAGEMENT_NEW_RESULT_H
+
