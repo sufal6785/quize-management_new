@@ -3,10 +3,9 @@
 //
 
 #include "Student.h"
-
 #include <fstream>
-
 #include "Utility.h"
+using namespace Utility;
 
 namespace model {
     Student::Student() : User() {
@@ -16,18 +15,8 @@ namespace model {
     }
 
     bool Student::registerUser(const string &name, const string &id, const string &pass) {
-        // if (!isExist("student-list.dat", id)) {
-        //     ofstream file;
-        //     file.open("student-list.dat", ios::app);
-        //     if (file.is_open()) {
-        //         file << name << "\n" << id << "\n" << pass << "\n";
-        //         return true;
-        //     } else cout << "Error: couldn't open file for writing." << endl;
-        // }
-        // return false;
-
-        if (Utility::isExistInFile("student-list.dat",id)) {
-            return Utility::saveToFile("student-list.dat",name,id,pass);
+        if (!isExistInFile("student-list.dat", id)) {
+            return saveToFile("student-list.dat", name, id, pass);
         }
         return false;
     }

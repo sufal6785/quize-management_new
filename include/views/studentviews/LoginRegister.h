@@ -5,7 +5,6 @@
 #ifndef LOGINREGISTER_H
 #define LOGINREGISTER_H
 #include <iostream>
-#include <limits>
 #include "StudentPortal.h"
 #include "welcome.h"
 #include "../../models/Student.h"
@@ -54,10 +53,9 @@ namespace view {
 
             if (user) {
                 cout << "Congratulations." << endl;
-                StudentPortal::MainView();
+                StudentPortal::action();
             } else {
                 cout << "Invalid credentials" << endl;
-                // return false;
                 login_or_register();
             }
         }
@@ -79,10 +77,6 @@ namespace view {
             }
         }
 
-        static void guest() {
-            Welcome();
-            login_or_register();
-        }
     };
 }
 #endif //LOGINREGISTER_H

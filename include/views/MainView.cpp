@@ -57,7 +57,7 @@ namespace view {
         int choice;
         cin >> choice;
         if (choice == 1) {
-            StudentPortal::MainView();
+            StudentPortal::action();
         }
     }
 }

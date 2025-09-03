@@ -29,7 +29,7 @@ namespace Utility {
 
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear input buffer
 
-            if (choice >= 1 && choice <= 2) {
+            if (choice >= low && choice <= up) {
                 return choice;
             }
 
@@ -67,6 +67,4 @@ namespace Utility {
         }
         return false;
     }
-
-
 }
