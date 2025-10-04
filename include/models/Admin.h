@@ -1,9 +1,11 @@
-//
+
 // Created by User on 8/16/2025.
+
 //
 
 #ifndef ADMIN_H
 #define ADMIN_H
+
 #include "User.h"
 #include <string>
 #include "Question.h"
@@ -35,6 +37,7 @@ namespace model {
         shared_ptr<User> loginUser(const string &id, const string &pass) override;
     };
 }
+
 
 
 #endif //ADMIN_H
