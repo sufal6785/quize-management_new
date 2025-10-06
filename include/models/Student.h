@@ -10,10 +10,10 @@
 namespace model {
     class Student : public User {
     private:
-        string file;
+        string student_file;
 
         void makeFile() {
-            file = file + "_" + getId() + ".dat";
+            student_file = student_file + "_" + getId() + ".dat";
         }
 
     public:

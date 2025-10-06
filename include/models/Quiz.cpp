@@ -10,16 +10,20 @@
 using namespace Utility;
 
 namespace model {
-    Quiz::Quiz() {
-        score = 0;
-        correct = 0;
-        wrong = 0;
+    //Loaded with question
+    Quiz::Quiz() : score(0), correct(0), wrong(0) {
         load();
+    }
+
+    //Can be used for adding new quiz
+    Quiz::Quiz(const string &quiz_id, const string &quiz_title) : score(0), correct(0), wrong(0) {
+        id = quiz_id;
+        title = quiz_title;
     }
 
     void Quiz::load() {
         ifstream file;
-        file.open("include/Quiz/q.txt");
+        file.open("include/quiz/q.txt");
         if (!file.is_open()) {
             cout << "Failed" << endl;
             return;
@@ -51,11 +55,11 @@ namespace model {
     }
 
 
-    // void Quiz::setId(const string &i) {
+    // void quiz::setId(const string &i) {
     //     id = i;
     // }
     //
-    // void Quiz::setTitle(const string &t) {
+    // void quiz::setTitle(const string &t) {
     //     title = t;
     // }
 
@@ -70,7 +74,7 @@ namespace model {
 
 
     void Quiz::display() const {
-        cout << "Quiz id: " << id << endl << title << endl;
+        cout << "quiz id: " << id << endl << title << endl;
         const size_t size = question.size();
         for (int i = 0; i < size; i++) {
             question[i].display();
@@ -81,7 +85,7 @@ namespace model {
         const size_t size = question.size();
         for (int i = 0; i < size; i++) {
             question[i].display();
-            //answer should be caracter, change needed
+            //answer should be character, change needed
             string answer = getInputString("Enter your answer: ");
             if (answer == question[i].getCorrect()) {
                 correct++;

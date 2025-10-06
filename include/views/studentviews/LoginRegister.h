@@ -53,7 +53,7 @@ namespace view {
 
             if (user) {
                 cout << "Congratulations." << endl;
-                StudentPortal::action();
+                StudentPortal::action(user);
             } else {
                 cout << "Invalid credentials" << endl;
                 login_or_register();

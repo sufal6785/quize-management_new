@@ -15,7 +15,7 @@ namespace view {
 
         static  void options();
 
-        static void action();
+        static void action(const shared_ptr<User> & user);
 
         static void student_home();
     };

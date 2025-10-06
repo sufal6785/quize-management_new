@@ -25,6 +25,8 @@ namespace model {
     public:
         Quiz();
 
+        Quiz(const string &quiz_id, const string &quiz_title);
+
         //id and title should be initialized while loading file
         // void setId(const string & i);
         // void setTitle(const string &t);
