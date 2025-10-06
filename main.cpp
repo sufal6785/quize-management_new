@@ -9,9 +9,10 @@
 #include "include/models/User.h"
 #include "include/models/Utility.h"
 #include "include/views/MainView.h"
-#include "include/views/studentviews/LoginRegister.h"
-#include "include/views/studentviews/StudentPortal.h"
-using namespace view;
+#include "include/views/adminviews/AdminPortal.h"
+// #include "include/views/studentviews/LoginRegister.h"
+// #include "include/views/studentviews/StudentPortal.h"
+using namespace adminview;
 using namespace model;
 
 #include <fstream>
@@ -91,24 +92,29 @@ int main() {
     //     cout << "Successful." << endl;
     // } else cerr << "Unsuccessful." << endl;
 
-    Question q;
-    q.setId("1");
-    q.setQuestion("Question");
-    q.setOpA("a");
-    q.setOpB("b");
-    q.setOpC("c");
-    q.setOpD("d");
-    q.setCorrectAns("a");
+    // Question q;
+    // q.setId("1");
+    // q.setQuestion("Question");
+    // q.setOpA("a");
+    // q.setOpB("b");
+    // q.setOpC("c");
+    // q.setOpD("d");
+    // q.setCorrectAns("a");
+    //
+    // //Checking the methods for Admin.cpp
+    // const auto user = make_unique<Admin>();
+    // const shared_ptr<Admin> admin = dynamic_pointer_cast<Admin>(
+    // user->loginUser("ss","123"));
+    // if (admin) {
+    //     // admin->addQuiz("cse",getInputString("Enter a title: "));
+    //     admin->addQuestion(q,"cse");
+    //     cout<<"Successful.";
+    // }else {
+    //     cerr<<"Unsuccessful"<<endl;
+    // }
 
-    //Checking the methods for Admin.cpp
-    const auto user = make_unique<Admin>();
-    const shared_ptr<Admin> admin = dynamic_pointer_cast<Admin>(
-    user->loginUser("ss","123"));
-    if (admin) {
-        // admin->addQuiz("cse",getInputString("Enter a title: "));
-        admin->addQuestion(q,"cse");
-        cout<<"Successful.";
-    }else {
-        cerr<<"Unsuccessful"<<endl;
-    }
+    //check Admin views
+    // AdminPortal::admin_home();
+    // StudentPortal::student_home();
+    view::MainView::home();
 }

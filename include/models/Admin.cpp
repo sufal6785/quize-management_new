@@ -62,13 +62,15 @@ namespace model {
         return nullptr;
     }
 
-    void Admin::addQuiz(const string &quiz_id, const string &quiz_title) {
+    bool Admin::addQuiz(const string &quiz_id, const string &quiz_title) {
         const string &file_name = "include/quiz/" + quiz_id + ".txt";
 
         ofstream file(file_name);
         if (file.is_open()) {
             file << quiz_id << "\n" << quiz_title << "\n";
+            return true;
         }
+        return false;
     }
 
 

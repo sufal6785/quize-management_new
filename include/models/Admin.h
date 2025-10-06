@@ -38,7 +38,7 @@ namespace model {
 
         // void addStudent(Student &student);
 
-        void addQuiz(const string &quiz_id, const string &quiz_title);
+        bool addQuiz(const string &quiz_id, const string &quiz_title);
 
         bool addQuestion(const Question &question, const string &quiz_id);
 

@@ -17,6 +17,8 @@ namespace model {
 
     public:
         Question();
+        Question(const string &id_,const string &q,const string &a,
+            const string &b,const string &c,const string &d,const string &ans);
 
         void setId(const string &i);
         void setQuestion(const string &q);

@@ -10,6 +10,17 @@ namespace model {
         question = opA = opB = opC = opD = correctAnswer = "";
     }
 
+    Question::Question(const string &id_, const string &q, const string &a, const string &b, const string &c, const string &d, const string &ans) {
+        id = id_;
+        question = q;
+        opA = a;
+        opB = b;
+        opC = c;
+        opD = d;
+        correctAnswer = ans;
+    }
+
+
     void Question::setId(const string &i) { id = i; }
     void Question::setQuestion(const string &q) { question = q; }
     void Question::setOpA(const string &op) { opA = op; }

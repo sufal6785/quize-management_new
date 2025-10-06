@@ -4,7 +4,9 @@
 #include <iostream>
 
 #include "../views/studentviews/StudentPortal.h"
+#include "adminviews/AdminPortal.h"
 using namespace std;
+using namespace adminview;
 #include "MainView.h"
 
 namespace view {
@@ -59,5 +61,15 @@ namespace view {
         if (choice == 1) {
             StudentPortal::student_home();
         }
+        if (choice == 2) {
+            AdminPortal::admin_home();
+        }
     }
+
+    void MainView::home() {
+        Gretting();
+        Options();
+        select();
+    }
+
 }
