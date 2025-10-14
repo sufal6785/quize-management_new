@@ -33,6 +33,10 @@ add_executable(quiz-management-new
 
         include/models/Result.cpp
         include/models/Result.h
+        include/views/adminviews/AdminPortal.cpp
+        include/views/adminviews/AdminPortal.h
+        include/views/adminviews/welcome.h
+        include/views/adminviews/LoginRegister.h
 )
 
 # If you have header files in an include directory

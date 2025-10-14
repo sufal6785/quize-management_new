@@ -6,7 +6,7 @@
 #define MAINVIEW_H
 
 
-namespace view {
+namespace view{
     class MainView {
     public:
         static void Gretting();
@@ -15,7 +15,9 @@ namespace view {
 
         static void select();
 
-        static void login();
+        static void home();
+
+
     };
 }
 

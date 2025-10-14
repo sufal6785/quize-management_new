@@ -17,6 +17,9 @@ namespace Utility {
     bool isExistInFile(const string &fileName, const string &userid);
 
     bool saveToFile(const string &fileName, const string &name, const string &id, const string &pass);
+
+    bool saveToFile(const string &fileName, const string &name, const string &id, const string &pass, const string &course_code);
+
 }
 
 

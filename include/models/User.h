@@ -38,6 +38,9 @@ namespace model {
         virtual bool registerUser(const string &name, const string &id, const string &pass) = 0;
 
         virtual shared_ptr<User> loginUser(const string &id, const string &pass) = 0;
+
+        //quiz
+        void showAvailableQuiz();
     };
 }
 

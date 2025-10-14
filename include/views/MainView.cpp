@@ -4,12 +4,14 @@
 #include <iostream>
 
 #include "../views/studentviews/StudentPortal.h"
+#include "adminviews/AdminPortal.h"
 using namespace std;
+using namespace adminview;
 #include "MainView.h"
 
 namespace view {
     // void MainView::Gretting() {
-    //     //Here anyonew will See a welcme message like welcome to the Quiz-Management or something else
+    //     //Here anyonew will See a welcme message like welcome to the quiz-Management or something else
     //     //which will suit more for the ui;
     // }
     //
@@ -17,7 +19,7 @@ namespace view {
     //     //here one will see two options, 1. Student login
     //     //2. Admin login
     void MainView::Gretting() {
-        // Here anyone will see a welcome message like welcome to the Quiz-Management or something else
+        // Here anyone will see a welcome message like welcome to the quiz-Management or something else
         // which will suit more for the UI
 
         cout << "\n\n";
@@ -25,7 +27,7 @@ namespace view {
         cout << "               QUIZ MANAGEMENT SYSTEM                  \n";
         cout << "========================================================\n";
         cout << "                                                        \n";
-        cout << "    Welcome to our comprehensive Quiz Management       \n";
+        cout << "    Welcome to our comprehensive quiz Management       \n";
         cout << "    Platform! Manage quizzes, track performance,       \n";
         cout << "    and enhance learning experiences.                  \n";
         cout << "                                                        \n";
@@ -57,7 +59,17 @@ namespace view {
         int choice;
         cin >> choice;
         if (choice == 1) {
-            StudentPortal::action();
+            StudentPortal::student_home();
+        }
+        if (choice == 2) {
+            AdminPortal::admin_home();
         }
     }
+
+    void MainView::home() {
+        Gretting();
+        Options();
+        select();
+    }
+
 }

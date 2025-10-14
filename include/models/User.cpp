@@ -4,6 +4,9 @@
 
 #include "User.h"
 #include <fstream>
+#include <filesystem>
+#include <vector>
+using  namespace std::filesystem;
 
 namespace model {
     User::User(const string &name, const string &id, const string &pass) {
@@ -52,4 +55,38 @@ namespace model {
         } else if (!file.is_open()) return false; //file doesn't exist
         return false;
     }
+
+    void User::showAvailableQuiz() {
+        // Replace with the path to your desired directory
+        const string path_string = "include/quiz"; // "." represents the current directory
+        const path path_to_directory(path_string);
+        vector<string> aq;
+        try {
+            // Check if the path exists and is a directory
+            if (exists(path_to_directory) && is_directory(path_to_directory)) {
+
+                // Iterate over the entries in the directory
+                for (const auto& entry : directory_iterator(path_to_directory)) {
+                    // Check if the entry is a regular file
+                    if (is_regular_file(entry.status())) {
+                        aq.push_back(entry.path().filename().string());
+                    }
+                }
+            } else {
+                cout << "The specified path is not a directory or does not exist." << endl;
+            }
+        } catch (const filesystem_error& ex) {
+            cerr << "Filesystem error: " << ex.what() << endl;
+        }
+
+        if (!aq.empty()) {
+            cout<<"Available Quizzes:\n";
+            for (const auto &quiz: aq) {
+                cout<<quiz<<endl;
+            }
+        } else {
+            cout<<"OOPs!!! No quiz is available...";
+        }
+    }
+
 }

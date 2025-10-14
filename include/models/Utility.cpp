@@ -67,4 +67,12 @@ namespace Utility {
         }
         return false;
     }
+
+    bool saveToFile(const string &fileName, const string &name, const string &id, const string &pass, const string &course_code) {
+        if (ofstream file(fileName, ios::app); file.is_open()) {
+            file << name << "\n" << id << "\n" << pass << "\n"<<course_code<<"\n";
+            return true;
+        }
+        return false;
+    }
 }

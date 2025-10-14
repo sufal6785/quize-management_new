@@ -1,4 +1,3 @@
-
 // Created by User on 8/16/2025.
 
 //
@@ -17,27 +16,36 @@ using namespace std;
 namespace model {
     class Admin : public User {
     private:
-        int course_code;
+        string course_code;
 
     public:
-        Admin(int course_code);
+        Admin();
 
-        Admin(const string &name, const string &id, const string &pass, int course_code);
+        explicit Admin(const string &code);
 
-        void addStudent(Student &student);
+        Admin(const string &name, const string &id, const string &pass, const string &code);
 
-        void addQuiz(Quiz &quiz);
+        void setCourseCode(const string &code);
 
-        void addQuestion(Question &question);
+        string getCourseCode();
 
-        void setResult(Result &result);
-
+        //course code is not written in the admin-list.dat
         bool registerUser(const string &name, const string &id, const string &pass) override;
 
+        bool admin_register(const string &name, const string &id, const string &pass, const string &course_code);
+
         shared_ptr<User> loginUser(const string &id, const string &pass) override;
+
+        // void addStudent(Student &student);
+
+        bool addQuiz(const string &quiz_id, const string &quiz_title);
+
+        bool addQuestion(const Question &question, const string &quiz_id);
+
+        // void setResult(Result &result);
+
     };
 }
-
 
 
 #endif //ADMIN_H
