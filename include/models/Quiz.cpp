@@ -5,13 +5,14 @@
 #include "Quiz.h"
 #include <fstream>
 #include <iostream>
+#include <sstream>
 
 #include "Utility.h"
 using namespace Utility;
 
 namespace model {
     //Loaded with question
-    Quiz::Quiz() : score(0), correct(0), wrong(0) {
+    Quiz::Quiz() : score(0), correct(0), wrong(0),quiz_file(makeFile()) {
         load();
     }
 
@@ -19,12 +20,14 @@ namespace model {
     Quiz::Quiz(const string &quiz_id, const string &quiz_title) : score(0), correct(0), wrong(0) {
         id = quiz_id;
         title = quiz_title;
+        quiz_file = makeFile();
         load();
     }
 
     void Quiz::load() {
+        string file_name = "include/quiz/" + getId() + ".txt";
         ifstream file;
-        file.open("include/quiz/quiz.txt");
+        file.open(file_name);
         if (!file.is_open()) {
             cout << "Failed" << endl;
             return;
@@ -108,4 +111,35 @@ namespace model {
         cout << "Wrong answer: " << wrong << endl;
         cout << "\nYour obtained mark: " << score << endl;
     }
+
+    void Quiz::loadResultByQuiz() {
+        ifstream file(quiz_file);
+
+        if (!result.empty()) {
+            result.clear();
+        }
+
+        if (!file.is_open()) {
+            cout<<"No results found for "<<getId()<<endl;
+        }
+
+        string line;
+        while (getline(file,line)) {
+            stringstream ss(line);
+            string student_id;
+            string comma;
+            string scr;
+
+            ss>>student_id>>comma>>scr;
+            int int_scr = stoi(scr);
+            result.emplace_back(student_id,getId(),int_scr);
+        }
+    }
+
+    vector<Result> Quiz::getResult() {
+        loadResultByQuiz();
+        return result;
+    }
+
+
 } // model

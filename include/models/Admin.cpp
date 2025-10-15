@@ -96,6 +96,19 @@ namespace model {
         return false;
     }
 
+    vector<Student> Admin::allStudents() {
+        const string file_name = "student-list.dat";
+        vector<Student> students;
+        ifstream file(file_name);
 
-    //
+        if (file.is_open()) {
+            string name, id, pass;
+            while (getline(file, name) && getline(file, id) && getline(file, pass)) {
+                students.emplace_back(name, id, pass);
+            }
+        }
+        return students;
+
+        //
+    }
 }

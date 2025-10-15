@@ -124,6 +124,9 @@
 //
 
 #include "StudentPortal.h"
+
+#include <fstream>
+#include "../../models/Quiz.h"
 #include "welcome.h"
 #include "LoginRegister.h"
 #include <iomanip>
@@ -131,7 +134,6 @@
 using namespace Utility;
 
 namespace view {
-
     // Helper function to pause and wait for user
     void waitForUser() {
         cout << "\n>>> Press Enter to continue...";
@@ -139,7 +141,7 @@ namespace view {
     }
 
     // Helper function to display section header
-    void displaySectionHeader(const string& title) {
+    void displaySectionHeader(const string &title) {
         cout << "\n==========================================================\n";
         cout << "   " << left << setw(47) << title << " \n";
         cout << "==========================================================\n\n";
@@ -255,8 +257,52 @@ namespace view {
 
             case 3: {
                 displaySectionHeader("VIEW QUIZ RESULT");
-                cout << " This feature will be available soon.\n";
-                cout << " You'll be able to check individual quiz results here.\n";
+                vector<string> aq = student->showAvailableQuiz();
+                if (!aq.empty()) {
+                    cout << " Available Quizzes:\n";
+                    cout << string(60, '-') << "\n";
+
+                    const size_t size = aq.size();
+
+                    for (int i = 0; i < size; i++) {
+                        cout << "  [" << (i + 1) << "] " << aq[i] << "\n";
+                    }
+
+                    cout << string(60, '-') << "\n";
+                    cout << "\n Enter the quiz number to see Result:\n";
+                    int ch = getValidChoice(1, static_cast<int>(size));
+                    const string qz_file = "include/quiz/" + aq[ch - 1] + ".txt";
+
+                    ifstream file(qz_file);
+                    string qz_id;
+                    string qz_tittle;
+                    getline(file, qz_id);
+                    getline(file, qz_tittle);
+
+                    Quiz quiz(qz_id, qz_tittle);
+                    vector<Result> results = quiz.getResult();
+
+                    if (results.empty()) {
+                        cout << "  No results available yet.\n";
+                        cout << "  Results will appear here after student complete quizzes.\n";
+                    } else {
+                        cout << " Results Summary for " << quiz.getId() << ":\n";
+                        cout << string(60, '-') << "\n";
+                        cout << left << setw(33) << "  Student ID" << setw(15) << "Score" << "\n";
+                        cout << string(60, '-') << "\n";
+
+                        for (const auto &r: results) {
+                            cout << "  " << left << setw(31) << r.getStudentId()
+                                    << setw(15) << r.getScore() << "\n";
+                        }
+
+                        cout << string(60, '-') << "\n";
+                        cout << "\n Total student : " << results.size() << "\n";
+                    }
+                } else {
+                    cout << "  No quizzes are currently available.\n";
+                    cout << "  Please check back later or contact your instructor.\n";
+                }
                 waitForUser();
                 break;
             }
@@ -277,7 +323,7 @@ namespace view {
 
                     for (const auto &r: results) {
                         cout << "  " << left << setw(28) << r.getQuizId()
-                             << setw(15) << r.getScore() << "\n";
+                                << setw(15) << r.getScore() << "\n";
                     }
 
                     cout << string(60, '-') << "\n";
