@@ -4,6 +4,7 @@
 
 #ifndef STUDENT_H
 #define STUDENT_H
+#include "Result.h"
 #include "User.h"
 
 
@@ -11,9 +12,9 @@ namespace model {
     class Student : public User {
     private:
         string student_file;
-
-        void makeFile() {
-            student_file = student_file + "_" + getId() + ".dat";
+        vector<Result> result;
+        string makeFile() {
+            return "result/student/" + getId() + ".txt";
         }
 
     public:
@@ -24,6 +25,14 @@ namespace model {
         bool registerUser(const string &name, const string &id, const string &pass) override;
 
         shared_ptr<User> loginUser(const string &id, const string &pass) override;
+
+        void attendQuiz(const string &qz);
+
+        void loadResultsByStudents();
+
+        vector<Result> getResult() ;
+
+        // void showResult();
     };
 }
 

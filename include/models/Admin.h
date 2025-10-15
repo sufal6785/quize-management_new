@@ -36,11 +36,12 @@ namespace model {
 
         shared_ptr<User> loginUser(const string &id, const string &pass) override;
 
-        // void addStudent(Student &student);
 
         bool addQuiz(const string &quiz_id, const string &quiz_title);
 
         bool addQuestion(const Question &question, const string &quiz_id);
+
+        bool addStudent(Student &student);
 
         // void setResult(Result &result);
 

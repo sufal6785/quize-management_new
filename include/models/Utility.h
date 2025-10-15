@@ -20,6 +20,7 @@ namespace Utility {
 
     bool saveToFile(const string &fileName, const string &name, const string &id, const string &pass, const string &course_code);
 
+    bool saveResult(const string &st_id, const string &qz_id, int score);
 }
 
 

@@ -1,89 +1,341 @@
+// //
+// // Created by User on 10/7/2025.
+// //
+//
+// #include "AdminPortal.h"
+//
+// #include "../../models/Question.h"
+// #include "../../models/Utility.h"
+// #include "../adminviews/LoginRegister.h"
+// #include "../adminviews/welcome.h"
+// using namespace Utility;
+//
+// namespace adminview {
+//     void AdminPortal::options() {
+//         cout << "\n=================== MAIN MENU ===================\n";
+//         cout << "Please select an option from the menu below:\n\n";
+//         cout << "1. Create quiz\n";
+//         cout << "2. Create question\n";
+//         cout << "3. View All Active Quizzes\n";
+//         cout << "4. Add student\n";
+//         // cout << "4. See All Results\n";
+//         // cout << "5. See Attended quiz List of a student\n";
+//         cout << "4. Logout\n";
+//         cout << "=================================================\n";
+//         cout << "Enter your choice (1-4): ";
+//     }
+//
+//     void AdminPortal::action(const shared_ptr<Admin> &admin) {
+//         options();
+//
+//         switch (getValidChoice(1, 4)) {
+//             case 1: {
+//                 const string quiz_id = getInputString("Enter Quiz Id: ");
+//                 const string title = getInputString("Enter Quiz Title: ");
+//                 if (admin->addQuiz(quiz_id, title)) {
+//                     cout << "Successfully added " << quiz_id << endl;
+//                 } else {
+//                     cerr << "Cannot add " << quiz_id << endl;
+//                 }
+//                 break;
+//             }
+//             case 2: {
+//                 //What will happen, when quiz id will not 1find.
+//                 string quiz_id = getInputString("Enter Quiz id: ");
+//                 string id = getInputString("Enter Question id: ");
+//                 string quest = getInputString("Enter Question: ");
+//                 string a = getInputString("Enter option A: ");
+//                 string b = getInputString("Enter option B: ");
+//                 string c = getInputString("Enter option C: ");
+//                 string d = getInputString("Enter option D: ");
+//                 string ans = getInputString("Enter correct Answer: ");
+//
+//                 Question question(id, quest, a, b, c, d, ans);
+//                 if (admin->addQuestion(question, quiz_id)) {
+//                     cout << "Successfully added..." << endl;
+//                 } else {
+//                     cerr << "Cannot added..." << endl;
+//                 }
+//                 break;
+//             }
+//             case 3:
+//                 admin->showAvailableQuiz();
+//                 break;
+//             // case 3:
+//             //     cout << "seeQuizResult()";
+//             //     break;
+//             case 4: {
+//                 string name = getInputString("Enter student name: ");
+//                 string id = getInputString("Enter student id: ");
+//                 string pass = getInputString("Enter student password: ");
+//
+//                 Student student(name, id, pass);
+//                 if (admin->addStudent(student)) {
+//                     cout << "Student added successfully!!!"<<endl;
+//                 } else {
+//                     cerr << "Cannot add student!!!" << endl;
+//                 }
+//
+//                 break;
+//             }
+//             // case 4:
+//             //     cout << "seeAllResults()";
+//             //     break;
+//             case 5:
+//                 cout << "seeAttendedQuizList()";
+//                 break;
+//             case 6:
+//                 cout << "logout()";
+//                 break;
+//             default:
+//                 cout << "Unexpected error occurred. Please try again.\n";
+//                 break;
+//         }
+//     }
+//
+//     void AdminPortal::admin_home() {
+//         Welcome::welcome();
+//         LoginRegister::login_or_register();
+//     }
+// } // view
+
 //
 // Created by User on 10/7/2025.
 //
 
 #include "AdminPortal.h"
-
 #include "../../models/Question.h"
 #include "../../models/Utility.h"
 #include "../adminviews/LoginRegister.h"
 #include "../adminviews/welcome.h"
+#include <iomanip>
+#include <limits>
 using namespace Utility;
 
 namespace adminview {
+    // Helper function to pause and wait for user
+    void waitForUser() {
+        cout << "\n>>> Press Enter to continue...";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
+
+    // Helper function to display section header
+    void displaySectionHeader(const string &title) {
+        cout << "\n==========================================================\n";
+        cout << "   " << left << setw(47) << title << " \n";
+        cout << "==========================================================\n\n";
+    }
+
     void AdminPortal::options() {
-        cout << "\n=================== MAIN MENU ===================\n";
-        cout << "Please select an option from the menu below:\n\n";
-        cout << "1. Create quiz\n";
-        cout << "2. Create question\n";
-        cout << "3. View All Active Quizzes\n";
-        // cout << "3. See Result of a quiz\n";
-        // cout << "4. See All Results\n";
-        // cout << "5. See Attended quiz List\n";
-        cout << "4. Logout\n";
-        cout << "=================================================\n";
-        cout << "Enter your choice (1-4): ";
+        cout << "\n==========================================================\n";
+        cout << "                   ADMIN MAIN MENU                         \n";
+        cout << "==========================================================\n";
+        cout << "                                                           \n";
+        cout << "   1. Create Quiz                                          \n";
+        cout << "      Set up a new quiz for students                       \n";
+        cout << "                                                           \n";
+        cout << "   2. Create Question                                      \n";
+        cout << "      Add questions to an existing quiz                    \n";
+        cout << "                                                           \n";
+        cout << "   3. View All Active Quizzes                              \n";
+        cout << "      See all quizzes in the system                        \n";
+        cout << "                                                           \n";
+        cout << "   4. Add Student                                          \n";
+        cout << "      Register a new student account                       \n";
+        cout << "                                                           \n";
+        cout << "   5. Logout                                               \n";
+        cout << "      Exit admin panel                                     \n";
+        cout << "                                                           \n";
+        cout << "==========================================================\n";
+        cout << "\n Enter your choice (1-5): ";
+    }
+
+    void AdminPortal::select(const shared_ptr<Admin> &admin) {
+        cout << "\n==========================================================\n";
+        cout << "             What would you like to do next?               \n";
+        cout << "==========================================================\n";
+        cout << "\n  1. Return to Main Menu\n";
+        cout << "  2. Logout\n";
+        cout << "\n Enter your choice: ";
+
+        if (getValidChoice(1, 2) == 1) {
+            action(admin);
+        } else {
+            cout << "\n Successfully logged out. Thank you!\n\n";
+            exit(1);
+        }
     }
 
     void AdminPortal::action(const shared_ptr<Admin> &admin) {
+        // Display welcome message with admin name
+        cout << "\n====================================================\n";
+        cout << "   Admin Panel - Welcome, " << left << setw(25) << admin->getName() << " \n";
+        cout << "====================================================\n";
+
         options();
 
-        switch (getValidChoice(1, 4)) {
+        switch (getValidChoice(1, 5)) {
             case 1: {
-                const string quiz_id = getInputString("Enter Quiz Id: ");
+                displaySectionHeader("CREATE NEW QUIZ");
+
+                const string quiz_id = getInputString("Enter Quiz ID: ");
                 const string title = getInputString("Enter Quiz Title: ");
-                if (admin->addQuiz(quiz_id,title)) {
-                    cout<<"Successfully added "<<quiz_id<<endl;
-                }else {
-                    cerr<<"Cannot add "<<quiz_id<<endl;
+
+                cout << "\n Processing...\n";
+
+                if (admin->addQuiz(quiz_id, title)) {
+                    cout << "\n Quiz created successfully!\n";
+                    cout << "  Quiz ID: " << quiz_id << "\n";
+                    cout << "  Title: " << title << "\n";
+
+
+                    string n = getInputString("How many questions do you want to want to add? ");
+                    for (int i = 1; i <= stoi(n); i++) {
+                        cout << "\n--- Question Details ---\n\n";
+                        string id = to_string(i);
+                        string quest = getInputString("Question Text: ");
+
+                        cout << "\n--- Answer Options ---\n\n";
+                        string a = getInputString("Option A: ");
+                        string b = getInputString("Option B: ");
+                        string c = getInputString("Option C: ");
+                        string d = getInputString("Option D: ");
+
+                        cout << "\n";
+                        string ans = getInputString("Correct Answer (A/B/C/D): ");
+
+                        Question question(id, quest, a, b, c, d, ans);
+
+                        cout << "\n Processing...\n";
+
+                        if (admin->addQuestion(question, quiz_id)) {
+                            cout << "\n Question " << i << " added successfully!\n";
+                        } else {
+                            cerr << "\n Error: Cannot add question\n";
+                            cerr << "  Possible reasons:\n";
+                            cerr << "  - Question ID already exists in this quiz\n";
+                            cerr << "  - Invalid question format\n";
+                        }
+                    }
+                } else {
+                    cerr << "\n Error: Cannot create quiz '" << quiz_id << "'\n";
+                    cerr << "  Possible reasons:\n";
+                    cerr << "  - Quiz ID already exists\n";
+                    cerr << "  - Invalid quiz ID format\n";
                 }
+
+                waitForUser();
                 break;
             }
+
             case 2: {
-                //What will happen, when quiz id will not 1find.
-                string quiz_id = getInputString("Enter Quiz id: ");
-                string id = getInputString("Enter Question id: ");
-                string quest = getInputString("Enter Question: ");
-                string a = getInputString("Enter option A: ");
-                string b = getInputString("Enter option B: ");
-                string c = getInputString("Enter option C: ");
-                string d = getInputString("Enter option D: ");
-                string ans = getInputString("Enter correct Answer: ");
+                displaySectionHeader("ADD QUESTION TO QUIZ");
 
-                Question question(id,quest,a,b,c,d,ans);
+                string quiz_id = getInputString("Enter Quiz ID: ");
+
+                cout << "\n--- Question Details ---\n\n";
+                string id = getInputString("Question ID: ");
+                string quest = getInputString("Question Text: ");
+
+                cout << "\n--- Answer Options ---\n\n";
+                string a = getInputString("Option A: ");
+                string b = getInputString("Option B: ");
+                string c = getInputString("Option C: ");
+                string d = getInputString("Option D: ");
+
+                cout << "\n";
+                string ans = getInputString("Correct Answer (A/B/C/D): ");
+
+                Question question(id, quest, a, b, c, d, ans);
+
+                cout << "\n Processing...\n";
+
                 if (admin->addQuestion(question, quiz_id)) {
-                    cout<<"Successfully added..."<<endl;
-                }else {
-                    cerr<<"Cannot added..."<<endl;
+                    cout << "\n Question added successfully!\n";
+                    cout << "  Quiz ID: " << quiz_id << "\n";
+                    cout << "  Question ID: " << id << "\n";
+                } else {
+                    cerr << "\n Error: Cannot add question\n";
+                    cerr << "  Possible reasons:\n";
+                    cerr << "  - Quiz ID '" << quiz_id << "' does not exist\n";
+                    cerr << "  - Question ID already exists in this quiz\n";
+                    cerr << "  - Invalid question format\n";
                 }
-                break;
 
+                waitForUser();
+                break;
             }
-            case 3:
-                admin->showAvailableQuiz();
+
+            case 3: {
+                displaySectionHeader("ALL ACTIVE QUIZZES");
+
+                vector<string> quizzes = admin->showAvailableQuiz();
+
+                if (!quizzes.empty()) {
+                    cout << " Active Quizzes in System:\n";
+                    cout << string(60, '-') << "\n";
+
+                    for (int i = 0; i < quizzes.size(); i++) {
+                        cout << "  [" << (i + 1) << "] " << quizzes[i] << "\n";
+                    }
+
+                    cout << string(60, '-') << "\n";
+                    cout << "\n Total active quizzes: " << quizzes.size() << "\n";
+                } else {
+                    cout << " No quizzes available in the system.\n";
+                    cout << " Create your first quiz using option 1.\n";
+                }
+
+                waitForUser();
                 break;
-            // case 3:
-            //     cout << "seeQuizResult()";
-            //     break;
-            case 4:
-                cout << "seeAllResults()";
+            }
+
+            case 4: {
+                displaySectionHeader("ADD NEW STUDENT");
+
+                string name = getInputString("Student Name: ");
+                string id = getInputString("Student ID: ");
+                string pass = getInputString("Password: ");
+
+                Student student(name, id, pass);
+
+                cout << "\n Processing...\n";
+
+                if (admin->addStudent(student)) {
+                    cout << "\n Student registered successfully!\n";
+                    cout << "  Name: " << name << "\n";
+                    cout << "  Student ID: " << id << "\n";
+                    cout << "  The student can now login with their credentials.\n";
+                } else {
+                    cerr << "\n Error: Cannot register student\n";
+                    cerr << "  Possible reasons:\n";
+                    cerr << "  - Student ID already exists\n";
+                    cerr << "  - Invalid student information\n";
+                }
+
+                waitForUser();
                 break;
-            case 5:
-                cout << "seeAttendedQuizList()";
+            }
+
+            case 5: {
+                cout << "\n Logging out...\n";
+                cout << "  Thank you for using the Admin Portal!\n\n";
+                exit(1);
                 break;
-            case 6:
-                cout << "logout()";
-                break;
+            }
+
             default:
-                cout << "Unexpected error occurred. Please try again.\n";
+                cout << "\n An unexpected error occurred.\n";
+                cout << "   Please try again or contact support if the problem persists.\n";
+                waitForUser();
                 break;
         }
+
+        select(admin);
     }
 
     void AdminPortal::admin_home() {
         Welcome::welcome();
         LoginRegister::login_or_register();
     }
-
-
-} // view
+}

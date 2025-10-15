@@ -13,6 +13,8 @@ namespace adminview {
 
         static  void options();
 
+        static void select(const shared_ptr<Admin> &admin);
+
         static void action(const shared_ptr<Admin> & user);
 
         static void admin_home();

@@ -56,7 +56,7 @@ namespace model {
         return false;
     }
 
-    void User::showAvailableQuiz() {
+    vector<string> User::showAvailableQuiz() {
         // Replace with the path to your desired directory
         const string path_string = "include/quiz"; // "." represents the current directory
         const path path_to_directory(path_string);
@@ -69,7 +69,7 @@ namespace model {
                 for (const auto& entry : directory_iterator(path_to_directory)) {
                     // Check if the entry is a regular file
                     if (is_regular_file(entry.status())) {
-                        aq.push_back(entry.path().filename().string());
+                        aq.push_back(entry.path().stem().string());
                     }
                 }
             } else {
@@ -79,14 +79,16 @@ namespace model {
             cerr << "Filesystem error: " << ex.what() << endl;
         }
 
-        if (!aq.empty()) {
-            cout<<"Available Quizzes:\n";
-            for (const auto &quiz: aq) {
-                cout<<quiz<<endl;
-            }
-        } else {
-            cout<<"OOPs!!! No quiz is available...";
-        }
+        // if (!aq.empty()) {
+        //     cout<<"Available Quizzes:\n";
+        //     for (const auto &quiz: aq) {
+        //         cout<<quiz<<endl;
+        //     }
+        // } else {
+        //     cout<<"OOPs!!! No quiz is available...";
+        // }
+
+        return aq;
     }
 
 }

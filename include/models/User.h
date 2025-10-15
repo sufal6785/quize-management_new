@@ -5,6 +5,7 @@
 #ifndef USER_H
 #define USER_H
 #include <iostream>
+#include <vector>
 #include <memory>
 
 namespace model {
@@ -40,7 +41,7 @@ namespace model {
         virtual shared_ptr<User> loginUser(const string &id, const string &pass) = 0;
 
         //quiz
-        void showAvailableQuiz();
+        vector<string> showAvailableQuiz();
     };
 }
 

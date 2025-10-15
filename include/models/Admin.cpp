@@ -76,10 +76,11 @@ namespace model {
 
     bool Admin::addQuestion(const Question &question, const string &quiz_id) {
         const string &filename = "include/quiz/" + quiz_id + ".txt";
-        if (ofstream file(filename,ios::app); file.is_open()) {
+        if (ofstream file(filename, ios::app); file.is_open()) {
             file << question.getId() << endl;
             file << question.getQuestion() << endl;
             file << question.getOpA() << endl;
+            file << question.getOpB() << endl;
             file << question.getOpC() << endl;
             file << question.getOpD() << endl;
             file << question.getCorrect() << endl;
@@ -87,6 +88,14 @@ namespace model {
         }
         return false;
     }
+
+    bool Admin::addStudent(Student &student) {
+        if (!isExistInFile("student-list.dat", student.getId())) {
+            return saveToFile("student-list.dat", student.getName(), student.getId(), student.getPass());
+        }
+        return false;
+    }
+
 
     //
 }
