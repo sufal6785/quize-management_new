@@ -19,11 +19,12 @@ namespace model {
     Quiz::Quiz(const string &quiz_id, const string &quiz_title) : score(0), correct(0), wrong(0) {
         id = quiz_id;
         title = quiz_title;
+        load();
     }
 
     void Quiz::load() {
         ifstream file;
-        file.open("include/quiz/q.txt");
+        file.open("include/quiz/quiz.txt");
         if (!file.is_open()) {
             cout << "Failed" << endl;
             return;
@@ -72,6 +73,14 @@ namespace model {
         return score;
     }
 
+    int Quiz::getCorrect() const {
+        return  correct;
+    }
+
+    int Quiz::getWrong() const {
+        return  wrong;
+    }
+
 
     void Quiz::display() const {
         cout << "quiz id: " << id << endl << title << endl;
@@ -95,7 +104,7 @@ namespace model {
     }
 
     void Quiz::report() const {
-        cout << "Correct answer: " << correct << endl;
+        cout << "\nCorrect answer: " << correct << endl;
         cout << "Wrong answer: " << wrong << endl;
         cout << "\nYour obtained mark: " << score << endl;
     }

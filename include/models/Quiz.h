@@ -34,6 +34,8 @@ namespace model {
         string getId() const;
         string getTitle() const;
         int getScore() const;
+        int getCorrect() const;
+        int getWrong() const;
 
         void display() const;
         void takeQuiz();

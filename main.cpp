@@ -10,6 +10,7 @@
 #include "include/models/Utility.h"
 #include "include/views/MainView.h"
 #include "include/views/adminviews/AdminPortal.h"
+#include "include/views/studentviews/StudentPortal.h"
 // #include "include/views/studentviews/LoginRegister.h"
 // #include "include/views/studentviews/StudentPortal.h"
 using namespace adminview;
@@ -20,7 +21,8 @@ using namespace model;
 using namespace filesystem;
 
 int main() {
-    // StudentPortal::student_home();
+    // view::StudentPortal::student_home();
+    // adminview::AdminPortal::admin_home();
     // auto user = make_unique<Student>();
     // // const shared_ptr<User> user = student->loginUser(id, pass);
     // const shared_ptr<User> student =user->loginUser("ss","123");
@@ -117,4 +119,27 @@ int main() {
     // AdminPortal::admin_home();
     // StudentPortal::student_home();
     view::MainView::home();
+
+    // auto user = make_unique<Student>();
+    // const shared_ptr<Student> student = dynamic_pointer_cast<Student>(
+    //     user->loginUser("ss", "123"));
+    //
+    // if (student) {
+    //     student->attendQuiz("q");
+    //     // student->showResult();
+    //     cout << "\nSuccessful" << endl;
+    // } else {
+    //     cerr << "Unsuccessful" << endl;
+    // }
+
+    //Result class
+
+    // Result r;
+    // r.setResult("sufal",34);
+    // auto result = r.getResult();
+    // for (const auto& [fst, snd]:result) {
+    //     cout<<fst<<" "<<snd<<endl;
+    // }
+
+    // Utility::saveResult("ss","cse",34);
 }
