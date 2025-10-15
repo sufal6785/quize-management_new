@@ -43,6 +43,8 @@ namespace model {
 
         bool addStudent(Student &student);
 
+        vector<Student> allStudents();
+
         // void setResult(Result &result);
 
     };

@@ -22,7 +22,7 @@ using namespace filesystem;
 
 int main() {
     // view::StudentPortal::student_home();
-    // adminview::AdminPortal::admin_home();
+    adminview::AdminPortal::admin_home();
     // auto user = make_unique<Student>();
     // // const shared_ptr<User> user = student->loginUser(id, pass);
     // const shared_ptr<User> student =user->loginUser("ss","123");
@@ -118,7 +118,7 @@ int main() {
     //check Admin views
     // AdminPortal::admin_home();
     // StudentPortal::student_home();
-    view::MainView::home();
+    // view::MainView::home();
 
     // auto user = make_unique<Student>();
     // const shared_ptr<Student> student = dynamic_pointer_cast<Student>(

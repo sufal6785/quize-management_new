@@ -79,8 +79,8 @@ namespace model {
 
             ss >> quiz_id >> comma >> score;
 
-            int sas = stoi(score);
-            result.emplace_back(getId(), quiz_id, sas);
+            int int_score = stoi(score);
+            result.emplace_back(getId(), quiz_id, int_score);
         }
     }
 

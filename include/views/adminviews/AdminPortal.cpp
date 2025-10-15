@@ -104,6 +104,9 @@
 //
 
 #include "AdminPortal.h"
+
+#include <fstream>
+
 #include "../../models/Question.h"
 #include "../../models/Utility.h"
 #include "../adminviews/LoginRegister.h"
@@ -140,14 +143,23 @@ namespace adminview {
         cout << "   3. View All Active Quizzes                              \n";
         cout << "      See all quizzes in the system                        \n";
         cout << "                                                           \n";
-        cout << "   4. Add Student                                          \n";
+        cout << "   4. View Result of a Quiz                                \n";
+        cout << "      Check your score for a specific quiz                 \n";
+        cout << "                                                           \n";
+        cout << "   5. View All Results for Students                        \n";
+        cout << "      See results from all quizzes you've taken            \n";
+        cout << "                                                           \n";
+        cout << "   6. View All Student                                     \n";
         cout << "      Register a new student account                       \n";
         cout << "                                                           \n";
-        cout << "   5. Logout                                               \n";
+        cout << "   7. Add Student                                          \n";
+        cout << "      Register a new student account                       \n";
+        cout << "                                                           \n";
+        cout << "   8. Logout                                               \n";
         cout << "      Exit admin panel                                     \n";
         cout << "                                                           \n";
         cout << "==========================================================\n";
-        cout << "\n Enter your choice (1-5): ";
+        cout << "\n Enter your choice (1-8): ";
     }
 
     void AdminPortal::select(const shared_ptr<Admin> &admin) {
@@ -174,7 +186,7 @@ namespace adminview {
 
         options();
 
-        switch (getValidChoice(1, 5)) {
+        switch (getValidChoice(1, 8)) {
             case 1: {
                 displaySectionHeader("CREATE NEW QUIZ");
 
@@ -291,6 +303,111 @@ namespace adminview {
             }
 
             case 4: {
+                displaySectionHeader("VIEW QUIZ RESULT");
+                vector<string> aq = admin->showAvailableQuiz();
+                if (!aq.empty()) {
+                    cout << " Available Quizzes:\n";
+                    cout << string(60, '-') << "\n";
+
+                    const size_t size = aq.size();
+
+                    for (int i = 0; i < size; i++) {
+                        cout << "  [" << (i + 1) << "] " << aq[i] << "\n";
+                    }
+
+                    cout << string(60, '-') << "\n";
+                    cout << "\n Enter the quiz number to see Result:\n";
+                    int ch = getValidChoice(1, static_cast<int>(size));
+                    const string qz_file = "include/quiz/" + aq[ch - 1] + ".txt";
+
+                    ifstream file(qz_file);
+                    string qz_id;
+                    string qz_tittle;
+                    getline(file, qz_id);
+                    getline(file, qz_tittle);
+
+                    Quiz quiz(qz_id, qz_tittle);
+                    vector<Result> results = quiz.getResult();
+
+                    if (results.empty()) {
+                        cout << "  No results available yet.\n";
+                        cout << "  Results will appear here after student complete quizzes.\n";
+                    } else {
+                        cout << " Results Summary for " << quiz.getId() << ":\n";
+                        cout << string(60, '-') << "\n";
+                        cout << left << setw(33) << "  Student ID" << setw(15) << "Score" << "\n";
+                        cout << string(60, '-') << "\n";
+
+                        for (const auto &r: results) {
+                            cout << "  " << left << setw(31) << r.getStudentId()
+                                    << setw(15) << r.getScore() << "\n";
+                        }
+
+                        cout << string(60, '-') << "\n";
+                        cout << "\n Total student : " << results.size() << "\n";
+                    }
+                } else {
+                    cout << "  No quizzes are currently available.\n";
+                    cout << "  Please check back later or contact your instructor.\n";
+                }
+                waitForUser();
+                break;
+            }
+
+            case 5: {
+                displaySectionHeader("ALL QUIZ RESULTS");
+
+                vector<Student> students = admin->allStudents();
+                for (auto student: students) {
+                    vector<Result> results = student.getResult();
+
+                    if (results.empty()) {
+                        cout << string(60, '-') << "\n";
+                        cout << "  No results available yet.\n";
+                        cout << "  Results will appear here after " << student.getName() << " complete quizzes.\n";
+                        cout << string(60, '-') << "\n";
+                        cout << "\n Total quizzes completed by " << student.getName()
+                                << ": " << results.size() << "\n\n";
+                    } else {
+                        cout << " Results Summary for " << student.getName() << ":\n";
+                        cout << string(60, '-') << "\n";
+                        cout << left << setw(30) << "  Quiz ID" << setw(15) << "Score" << "\n";
+                        cout << string(60, '-') << "\n";
+
+                        for (const auto &r: results) {
+                            cout << "  " << left << setw(28) << r.getQuizId()
+                                    << setw(15) << r.getScore() << "\n";
+                        }
+
+                        cout << string(60, '-') << "\n";
+                        cout << "\n Total quizzes completed by " << student.getName()
+                                << ": " << results.size() << "\n\n";
+                    }
+                }
+                waitForUser();
+                break;
+            }
+
+            case 6: {
+                displaySectionHeader("VIEW ALL STUDENT");
+                vector<Student> students = admin->allStudents();
+                int cnt = 0;
+                cout << string(60, '-') << "\n";
+                cout << "All Student Details: \n";
+                // cout << string(60, '-') << "\n";
+                for (auto student: students) {
+                    cout << string(60, '-') << "\n";
+                    student.display();
+                    cnt++;
+                }
+                cout << string(60, '-') << "\n";
+                cout << "\n Total student: " << cnt << "\n";
+
+                waitForUser();
+                break;
+            }
+
+            case 7: {
                 displaySectionHeader("ADD NEW STUDENT");
 
                 string name = getInputString("Student Name: ");
@@ -317,7 +434,7 @@ namespace adminview {
                 break;
             }
 
-            case 5: {
+            case 8: {
                 cout << "\n Logging out...\n";
                 cout << "  Thank you for using the Admin Portal!\n\n";
                 exit(1);

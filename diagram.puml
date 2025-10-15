@@ -1,0 +1,134 @@
+@startuml quiz_management_diagram
+
+' =========================
+'      User Hierarchy
+' =========================
+class model::User {
+    - user_name : string
+    - userid : string
+    - password : string
+    + User()
+    + User(name, id, pass)
+    + set()
+    + display() const
+    + getName() : string
+    + getId() : string
+    + getPass() : string
+    + registerUser(name, id, pass) : bool
+    + loginUser(id, pass) : shared_ptr<User>
+    + showAvailableQuiz() : vector<string>
+    + isExist(fileName, userid) : bool
+}
+
+class model::Admin {
+    - course_code : string
+    + Admin()
+    + Admin(code)
+    + Admin(name, id, pass, code)
+    + setCourseCode(code)
+    + getCourseCode() : string
+    + registerUser(name, id, pass) : bool
+    + admin_register(name, id, pass, course_code) : bool
+    + loginUser(id, pass) : shared_ptr<User>
+    + addQuiz(quiz_id, quiz_title) : bool
+    + addQuestion(question, quiz_id) : bool
+    + addStudent(student) : bool
+}
+
+class model::Student {
+    - student_file : string
+    - result : vector<Result>
+    + Student()
+    + Student(name, id, pass)
+    + registerUser(name, id, pass) : bool
+    + loginUser(id, pass) : shared_ptr<User>
+    + attendQuiz(qz)
+    + loadResultsByStudents()
+    + getResult() : vector<Result>
+}
+
+model::Admin --|> model::User
+model::Student --|> model::User
+
+' =========================
+'      Quiz & Question
+' =========================
+class model::Quiz {
+    - id : string
+    - title : string
+    - question : vector<Question>
+    - score : int
+    - correct : int
+    - wrong : int
+    + Quiz()
+    + Quiz(quiz_id, quiz_title)
+    + getId() : string
+    + getTitle() : string
+    + getScore() : int
+    + getCorrect() : int
+    + getWrong() : int
+    + display() const
+    + takeQuiz()
+    + report() const
+}
+
+class model::Question {
+    - id : string
+    - question : string
+    - opA : string
+    - opB : string
+    - opC : string
+    - opD : string
+    - correctAnswer : string
+    + Question()
+    + Question(id_, q, a, b, c, d, ans)
+    + setId(i)
+    + setQuestion(q)
+    + setOpA(op)
+    + setOpB(op)
+    + setOpC(op)
+    + setOpD(op)
+    + setCorrectAns(ans)
+    + getId() : string
+    + getQuestion() : string
+    + getOpA() : string
+    + getOpB() : string
+    + getOpC() : string
+    + getOpD() : string
+    + getCorrect() : string
+    + display() const
+}
+
+model::Quiz "1" -- "*" model::Question : contains
+
+' =========================
+'      Result
+' =========================
+class model::Result {
+    - student_id : string
+    - quiz_id : string
+    - score : int
+    + Result()
+    + Result(st_id, qz_id, scr)
+    + getStudentId() : string
+    + getQuizId() : string
+    + getScore() : int
+}
+
+model::Student "1" -- "*" model::Result : has
+model::Result "*" -- "1" model::Quiz : for
+
+' =========================
+'      Utility
+' =========================
+class Utility {
+    + getInputString(prompt) : string
+    + getValidChoice(low, up) : int
+    + file(id, user) : string
+    + isExistInFile(fileName, userid) : bool
+    + saveToFile(fileName, name, id, pass) : bool
+    + saveToFile(fileName, name, id, pass, course_code) : bool
+    + saveResult(st_id, qz_id, score) : bool
+}
+
+@enduml

@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "Question.h"
+#include "Result.h"
 using namespace std;
 
 namespace model {
@@ -16,9 +17,15 @@ namespace model {
         string id;
         string title;
         vector<Question> question;
+        vector<Result> result;
         int score;
         int correct;
         int wrong;
+        string quiz_file;
+
+        string makeFile() {
+            return "result/quiz/" + getId() + ".txt";
+        }
 
         void load();
 
@@ -40,6 +47,9 @@ namespace model {
         void display() const;
         void takeQuiz();
         void report() const;
+
+        void loadResultByQuiz();
+        vector<Result> getResult();
     };
 } // model
 
