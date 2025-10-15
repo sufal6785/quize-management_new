@@ -1,5 +1,5 @@
 //
-// Created by User on 8/9/2025.
+// Created by Sufal on 8/9/2025.
 //
 
 #include "Student.h"
@@ -50,7 +50,6 @@ namespace model {
         string quizId, quizTitle;
         getline(file, quizId);
         getline(file, quizTitle);
-        // file.close();
 
         Quiz quiz(quizId, quizTitle);
         quiz.takeQuiz();
@@ -83,13 +82,6 @@ namespace model {
             result.emplace_back(getId(), quiz_id, int_score);
         }
     }
-
-    // void Student::showResult() {
-    //     loadResultsByStudents();
-    //     for (auto &r: result) {
-    //         cout << r.getQuizId() << " " << r.getScore() << endl;
-    //     }
-    // }
 
     vector<Result> Student::getResult() {
         loadResultsByStudents();

@@ -1,145 +1,86 @@
 //
 // Created by User on 8/9/2025.
+// By Md Sufal Mia
 //
-#include <iostream>
 
+#include <iostream>
 #include "include/models/Quiz.h"
-#include "include/models/Student.h"
-#include "include/models/Admin.h"
-#include "include/models/User.h"
 #include "include/models/Utility.h"
-#include "include/views/MainView.h"
 #include "include/views/adminviews/AdminPortal.h"
 #include "include/views/studentviews/StudentPortal.h"
-// #include "include/views/studentviews/LoginRegister.h"
-// #include "include/views/studentviews/StudentPortal.h"
 using namespace adminview;
 using namespace model;
+using namespace view;
 
-#include <fstream>
-#include <filesystem>
-using namespace filesystem;
+void Gretting() {
+    cout << "\n\n";
+    cout << "==========================================================\n";
+    cout << "                 QUIZ MANAGEMENT SYSTEM                   \n";
+    cout << "==========================================================\n";
+    cout << "                                                          \n";
+    cout << "     Welcome to our comprehensive Quiz Management        \n";
+    cout << "     Platform! Manage quizzes, track performance,        \n";
+    cout << "     and enhance learning experiences.                   \n";
+    cout << "                                                          \n";
+    cout << "       Students: Take quizzes and view results           \n";
+    cout << "       Admins: Create and manage quiz content            \n";
+    cout << "                                                          \n";
+    cout << "==========================================================\n";
+    cout << "\n";
+}
+
+void Options() {
+    cout << "==========================================================\n";
+    cout << "                     LOGIN PORTAL                         \n";
+    cout << "==========================================================\n";
+    cout << "                                                          \n";
+    cout << "Please select your role to continue:                     \n";
+    cout << "                                                          \n";
+    cout << "    1. Student Login                                     \n";
+    cout << "       Take quizzes and view your results                \n";
+    cout << "                                                          \n";
+    cout << "    2. Admin Login                                       \n";
+    cout << "       Manage quizzes and student accounts               \n";
+    cout << "                                                          \n";
+    cout << "    3. Exit                                              \n";
+    cout << "       Close the application                             \n";
+    cout << "                                                          \n";
+    cout << "==========================================================\n";
+    cout << "\n Enter your choice (1-3): ";
+}
+
+void select() {
+
+    switch (Utility::getValidChoice(1,3)) {
+        case 1:
+            cout << "\n Redirecting to Student Portal...\n";
+            StudentPortal::student_home();
+            break;
+
+        case 2:
+            cout << "\n Redirecting to Admin Portal...\n";
+            AdminPortal::admin_home();
+            break;
+
+        case 3:
+            cout << "\n==========================================================\n";
+            cout << "        Thank you for using Quiz Management System!      \n";
+            cout << "                    Goodbye!                              \n";
+            cout << "==========================================================\n\n";
+            exit(0);
+            break;
+
+        default:
+            cout << "\n Invalid choice! Please select 1, 2, or 3.\n";
+            cout << "\n>>> Press Enter to continue...";
+            cin.get();
+            break;
+    }
+}
+
 
 int main() {
-    // view::StudentPortal::student_home();
-    adminview::AdminPortal::admin_home();
-    // auto user = make_unique<Student>();
-    // // const shared_ptr<User> user = student->loginUser(id, pass);
-    // const shared_ptr<User> student =user->loginUser("ss","123");
-    // student->display();
-    // quiz qz;
-    // qz.setId("quiz01");
-    // qz.setTitle("Sufal Mia");
-    // qz.display();
-
-    // auto user = make_unique<Student>();
-    // // const shared_ptr<User> student = user->showAvailableQuiz();
-    //
-    // user->showAvailableQuiz();
-
-    //Writing Question
-    // auto user = make_unique<Student>();
-    // const shared_ptr<User> student = user->loginUser("ss","123");
-    // vector<Question> questions;
-    // while (true) {
-    //
-    //     Question qs;
-    //     string i, q, a, b, c, d,ans;
-    //     cout<<"id: ";cin>>i;
-    //     cout<<"qus: ";cin>>q;
-    //     cout<<"a: ";cin>>a;
-    //     cout<<"b: ";cin>>b;
-    //     cout<<"c: ";cin>>c;
-    //     cout<<"d: ";cin>>d;
-    //     cout<<"ans: ";cin>>ans;
-    //
-    //     qs.setId(i);
-    //     qs.setQuestion(q);
-    //     qs.setOpA(a);
-    //     qs.setOpB(b);
-    //     qs.setOpC(c);
-    //     qs.setOpD(d);
-    //     qs.setCorrectAns(ans);
-    //
-    //     questions.push_back(qs);
-    //     char ch;
-    //     cout<<"Enter 'q' to exit"<<endl;
-    //     cin>>ch;
-    //     if (ch == 'q') break;
-    // }
-    //
-    // ofstream file;
-    // file.open("sufal.txt", ios::app);
-    // if (file.is_open()) {
-    //     for (const auto& l:questions) {
-    //         file<<l.getId()<<endl;
-    //         file<<l.getQuestion()<<endl;
-    //         file<<l.getOpA()<<endl;
-    //         file<<l.getOpB()<<endl;
-    //         file<<l.getOpC()<<endl;
-    //         file<<l.getOpD()<<endl;
-    //         file<<l.getCorrect()<<endl;
-    //     }
-    // }
-
-    //Login Admin
-    // auto user = make_unique<Admin>();
-    // const shared_ptr<User> admin = user->loginUser("ss","123");
-
-
-    //Register Admin
-    // Admin admin("sufal", "ss", "123", "101");
-    // if (admin.admin_register(admin.getName(), admin.getId(), admin.getPass(), admin.getCourseCode())) {
-    // if (admin){
-    //     cout << "Successful." << endl;
-    // } else cerr << "Unsuccessful." << endl;
-
-    // Question q;
-    // q.setId("1");
-    // q.setQuestion("Question");
-    // q.setOpA("a");
-    // q.setOpB("b");
-    // q.setOpC("c");
-    // q.setOpD("d");
-    // q.setCorrectAns("a");
-    //
-    // //Checking the methods for Admin.cpp
-    // const auto user = make_unique<Admin>();
-    // const shared_ptr<Admin> admin = dynamic_pointer_cast<Admin>(
-    // user->loginUser("ss","123"));
-    // if (admin) {
-    //     // admin->addQuiz("cse",getInputString("Enter a title: "));
-    //     admin->addQuestion(q,"cse");
-    //     cout<<"Successful.";
-    // }else {
-    //     cerr<<"Unsuccessful"<<endl;
-    // }
-
-    //check Admin views
-    // AdminPortal::admin_home();
-    // StudentPortal::student_home();
-    // view::MainView::home();
-
-    // auto user = make_unique<Student>();
-    // const shared_ptr<Student> student = dynamic_pointer_cast<Student>(
-    //     user->loginUser("ss", "123"));
-    //
-    // if (student) {
-    //     student->attendQuiz("q");
-    //     // student->showResult();
-    //     cout << "\nSuccessful" << endl;
-    // } else {
-    //     cerr << "Unsuccessful" << endl;
-    // }
-
-    //Result class
-
-    // Result r;
-    // r.setResult("sufal",34);
-    // auto result = r.getResult();
-    // for (const auto& [fst, snd]:result) {
-    //     cout<<fst<<" "<<snd<<endl;
-    // }
-
-    // Utility::saveResult("ss","cse",34);
+    Gretting();
+    Options();
+    select();
 }

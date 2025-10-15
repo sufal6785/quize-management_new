@@ -1,5 +1,5 @@
 //
-// Created by User on 8/9/2025.
+// Created by Sufal on 8/9/2025.
 //
 
 #include "User.h"
@@ -57,8 +57,7 @@ namespace model {
     }
 
     vector<string> User::showAvailableQuiz() {
-        // Replace with the path to your desired directory
-        const string path_string = "include/quiz"; // "." represents the current directory
+        const string path_string = "include/quiz";
         const path path_to_directory(path_string);
         vector<string> aq;
         try {
@@ -69,6 +68,7 @@ namespace model {
                 for (const auto& entry : directory_iterator(path_to_directory)) {
                     // Check if the entry is a regular file
                     if (is_regular_file(entry.status())) {
+                        //push the file name without extension
                         aq.push_back(entry.path().stem().string());
                     }
                 }
@@ -78,15 +78,6 @@ namespace model {
         } catch (const filesystem_error& ex) {
             cerr << "Filesystem error: " << ex.what() << endl;
         }
-
-        // if (!aq.empty()) {
-        //     cout<<"Available Quizzes:\n";
-        //     for (const auto &quiz: aq) {
-        //         cout<<quiz<<endl;
-        //     }
-        // } else {
-        //     cout<<"OOPs!!! No quiz is available...";
-        // }
 
         return aq;
     }

@@ -1,5 +1,5 @@
 //
-// Created by User on 8/15/2025.
+// Created by Sufal on 8/15/2025.
 //
 
 #include "Utility.h"
@@ -76,18 +76,6 @@ namespace Utility {
         }
         return false;
     }
-
-    // void saveResult(const string &st_id, const string &qz_id, int score) {
-    //     const string studentFile = "result/student/" + st_id + ".txt";
-    //     ofstream sFile(studentFile, ios::app);
-    //     sFile<<qz_id<<","<<score<<"\n";
-    //     sFile.close();
-    //
-    //     const string quizFile = "result/quiz/" + qz_id + ".txt";
-    //     ofstream qFile(quizFile, ios::app);
-    //     qFile<<st_id<<","<<score<<"\n";
-    //     qFile.close();
-    // }
 
     bool saveResult(const string &st_id, const string &qz_id, int score) {
         // Save to student file

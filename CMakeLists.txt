@@ -16,8 +16,6 @@ add_executable(quiz-management-new
         include/models/Student.h
         include/views/studentviews/StudentPortal.cpp
         include/views/studentviews/StudentPortal.h
-        include/views/MainView.cpp
-        include/views/MainView.h
         include/views/studentviews/welcome.h
         include/views/studentviews/LoginRegister.h
         include/models/Utility.cpp

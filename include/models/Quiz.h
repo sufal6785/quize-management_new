@@ -1,12 +1,11 @@
 //
-// Created by User on 9/3/2025.
+// Created by Niloy on 9/3/2025.
 //
 
 #ifndef QUIZ_MANAGEMENT_NEW_QUIZ_H
 #define QUIZ_MANAGEMENT_NEW_QUIZ_H
 #include <string>
 #include <vector>
-
 #include "Question.h"
 #include "Result.h"
 using namespace std;
@@ -33,10 +32,6 @@ namespace model {
         Quiz();
 
         Quiz(const string &quiz_id, const string &quiz_title);
-
-        //id and title should be initialized while loading file
-        // void setId(const string & i);
-        // void setTitle(const string &t);
 
         string getId() const;
         string getTitle() const;

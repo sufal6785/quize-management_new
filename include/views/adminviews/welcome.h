@@ -1,5 +1,5 @@
 //
-// Created by User on 10/7/2025.
+// Created by Ayesha on 10/7/2025.
 //
 
 #ifndef QUIZ_MANAGEMENT_NEW_WELCOME_H

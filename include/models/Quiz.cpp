@@ -1,12 +1,11 @@
 //
-// Created by User on 9/3/2025.
+// Created by Niloy on 9/3/2025.
 //
 
 #include "Quiz.h"
 #include <fstream>
 #include <iostream>
 #include <sstream>
-
 #include "Utility.h"
 using namespace Utility;
 
@@ -57,15 +56,6 @@ namespace model {
             question.push_back(tem);
         }
     }
-
-
-    // void quiz::setId(const string &i) {
-    //     id = i;
-    // }
-    //
-    // void quiz::setTitle(const string &t) {
-    //     title = t;
-    // }
 
     string Quiz::getId() const { return id; }
 
