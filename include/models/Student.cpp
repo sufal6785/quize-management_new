@@ -78,8 +78,8 @@ namespace model {
 
             ss >> quiz_id >> comma >> score;
 
-            int int_score = stoi(score);
-            result.emplace_back(getId(), quiz_id, int_score);
+            int scr = stoi(score);
+            result.emplace_back(getId(), quiz_id, scr);
         }
     }
 
