@@ -1,0 +1,72 @@
+quiz1
+Basic Computer science question, This quiz is created by Md Sufal Mia
+1
+What does CPU stand for?
+a) Central Processing Unit
+b) Computer Personal Unit
+c) Central Program Utility
+d) Computer Processing Utility
+a
+2
+Which of the following is NOT an operating system?
+a) Windows
+b) Linux
+c) Oracle
+d) macOS
+c
+3
+What is the smallest unit of data in a computer?
+a) Byte
+b) Bit
+c) Kilobyte
+d) Nibble
+b
+4
+Which programming language is primarily used for web development styling?
+a) Python
+b) CSS
+c) Java
+d) C++
+b
+5
+What does RAM stand for?
+a) Random Access Memory
+b) Read Access Memory
+c) Rapid Application Memory
+d) Runtime Application Module
+a
+6
+Which symbol is commonly used in programming to denote a comment in many languages?
+a) #
+b) $
+c) @
+d) &
+a
+7
+What is the binary equivalent of decimal number 8?
+a) 1000
+b) 1010
+c) 0111
+d) 1100
+a
+8
+Which protocol is used to transfer web pages over the internet?
+a) FTP
+b) SMTP
+c) HTTP
+d) POP3
+c
+9
+What type of software is designed to harm computer systems?
+a) Firmware
+b) Malware
+c) Freeware
+d) Shareware
+b
+10
+Which data structure follows the LIFO (Last In First Out) principle?
+a) Queue
+b) Array
+c) Stack
+d) Linked List
+c
