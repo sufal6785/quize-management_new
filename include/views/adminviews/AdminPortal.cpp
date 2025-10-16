@@ -52,7 +52,10 @@ namespace adminview {
         cout << "   7. Add Student                                          \n";
         cout << "      Register a new student account                       \n";
         cout << "                                                           \n";
-        cout << "   8. Logout                                               \n";
+        cout << "   8. View Details                                           \n";
+        cout << "      You will see your details                                    \n";
+        cout << "                                                           \n";
+        cout << "   9. Logout                                               \n";
         cout << "      Exit admin panel                                     \n";
         cout << "                                                           \n";
         cout << "==========================================================\n";
@@ -332,6 +335,15 @@ namespace adminview {
             }
 
             case 8: {
+                displaySectionHeader("VIEW DETAILS");
+                cout << string(60, '-') << "\n";
+                admin->display();
+                cout << string(60, '-') << "\n";
+                waitForUser();
+                break;
+            }
+
+            case 9: {
                 cout << "\n Logging out...\n";
                 cout << "  Thank you for using the Admin Portal!\n\n";
                 exit(1);

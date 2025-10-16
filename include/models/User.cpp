@@ -38,8 +38,8 @@ namespace model {
 
 
     void User::display() const {
-        cout << "Student name: " << user_name << endl;
-        cout << "Student userid: " << userid << endl;
+        cout << "Your name: " << user_name << endl;
+        cout << "Your userid: " << userid << endl;
     }
 
     bool User::isExist(const string &fileName, const string &userid) {

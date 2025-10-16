@@ -45,7 +45,10 @@ namespace view {
         cout << "   5. View Attended Quiz History                        \n";
         cout << "      See list of quizzes you have completed               \n";
         cout << "                                                           \n";
-        cout << "   6. Logout                                             \n";
+        cout << "   6. View Details                                           \n";
+        cout << "      You will see your details                                    \n";
+        cout << "                                                           \n";
+        cout << "   7. Logout                                             \n";
         cout << "      Exit your account                                    \n";
         cout << "                                                           \n";
         cout << "===========================================================\n";
@@ -239,6 +242,15 @@ namespace view {
             }
 
             case 6: {
+                displaySectionHeader("VIEW DETAILS");
+                cout << string(60, '-') << "\n";
+                student->display();
+                cout << string(60, '-') << "\n";
+                waitForUser();
+                break;
+            }
+
+            case 7: {
                 cout << "\n Logging out...\n";
                 cout << "  Thank you for using the Student Portal, " << student->getName() << "!\n\n";
                 exit(1);
